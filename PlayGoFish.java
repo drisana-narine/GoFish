@@ -27,11 +27,11 @@ public class PlayGoFish {
         }
 
         //show players cards before and after eliminating pairs
-        System.out.println("PLAYER CARDS: "+ playerCards);
+        System.out.println("PLAYER CARDS: " + playerCards);
         System.out.println("After getting rid of pairs: ");
         //call to method to eliminate pairs
         playerCards = GoFishGamePlay.differentCards(playerCards);
-        System.out.println("PLAYER CARDS: "+playerCards);
+        System.out.println("PLAYER CARDS: " + playerCards);
 
         //eliminate pairs from dealers cards
         dealerCards = GoFishGamePlay.differentCards(dealerCards);
@@ -57,9 +57,8 @@ public class PlayGoFish {
             //dealer keeps asking for cards if the player had the previous card asked for
             } while (foundCard);
 
-
-            System.out.println("No.");
-            System.out.println("PLAYER CARDS: "+ playerCards);
+            System.out.println("Go Fish");
+            System.out.println("PLAYER CARDS: " + playerCards);
             //add card to dealer after no match with player
             dealerCard = newDeck.get((int) (Math.random() * (newDeck.size())));
             newDeck.remove(dealerCard);
@@ -81,7 +80,8 @@ public class PlayGoFish {
                 playerCards = GoFishGamePlay.differentCards(playerCards);
                 isGameOver();
             } while (foundCard);
-            System.out.println("The dealer does not have the card.");
+            
+            System.out.println("Go Fish");
             //add card to player if no match with dealer
             playerCard = newDeck.get((int) (Math.random() * (newDeck.size())));
             newDeck.remove(playerCard);
@@ -96,7 +96,7 @@ public class PlayGoFish {
     //method to check if card asked for is there
     private static void checkForCard(String card, LinkedList<String> cards,LinkedList<String> cards2){
         String[] s;
-        for(int i=0;i< cards.size();i++){
+        for(int i = 0; i < cards.size(); i++){
             s=cards.get(i).split(" ");
             if(card.equalsIgnoreCase(s[0])){
                 System.out.println("Card acquired: "+cards.get(i));
@@ -105,22 +105,22 @@ public class PlayGoFish {
                 //remove card from other
                 cards.remove(cards.get(i));
                 //stay in loop of asking for card if the card was there
-                foundCard=true;
+                foundCard = true;
                 break;
             }
             else
-                foundCard=false;
+                foundCard = false;
         }
     }
 
     //end game if either the player or dealer are out of cards
     private static void isGameOver(){
-        if(playerCards.size()==0){
+        if(playerCards.size() == 0){
             System.out.println("Congratulations, you won.");
             System.out.println("Game Over.");
             System.exit(1);
         }
-        if(dealerCards.size()==0){
+        if(dealerCards.size() == 0){
             System.out.println("The dealer won.");
             System.out.println("Game Over.");
             System.exit(1);
