@@ -7,8 +7,8 @@ public class GoFishGamePlay {
     public static LinkedList<String> differentCards(LinkedList<String> cards){
         //linked list to keep track of different card types
         LinkedList<Integer> different = new LinkedList<>();
-        for(int i=0;i< cards.size();i++){
-            String[] s=cards.get(i).split(" ");
+        for(int i = 0; i < cards.size(); i++){
+            String[] s = cards.get(i).split(" ");
             //add card type to linked list if it is not already in there
             if(!different.contains(mapToNum(s[0]))){
                 different.add(mapToNum(s[0]));
@@ -22,12 +22,12 @@ public class GoFishGamePlay {
         //linked list to keep track of amounts of each card type
         LinkedList<Integer> amounts = new LinkedList<>();
         //create linked list the same size as linked list with card types
-        for(int i=0;i<different.size();i++){
+        for(int i = 0; i < different.size(); i++){
             amounts.add(0);
         }
 
         //go through cards and count hiw many of each type
-        for(int j=0;j<cards.size();j++){
+        for(int j = 0; j < cards.size(); j++){
             String card = cards.get(j);
             String[] s = card.split(" ");
             int index = different.indexOf(mapToNum(s[0]));
@@ -42,21 +42,21 @@ public class GoFishGamePlay {
                                                     LinkedList<String> cards){
         //linked list to keep track of which card types to remove
         LinkedList<Integer> numsToRemove = new LinkedList<>();
-        for(int i=0;i<amounts.size();i++){
+        for(int i = 0; i < amounts.size(); i++){
             //add card type to linked list of card types to remove if they occur 2 or 4 times
-            if(amounts.get(i)==2 || amounts.get(i)==4){
+            if(amounts.get(i) == 2 || amounts.get(i) == 4){
                 numsToRemove.add(different.get(i));
             }
             //remove two of the card type if it occurs 3 times
-            if(amounts.get(i)==3){
+            if(amounts.get(i) == 3){
                 int num = different.get(i);
                 String s[];
                 //variable to keep 1 out of 3 cards remove to put it back
                 String keepCard=null;
-                for(int j=0;j<cards.size();j++){
-                    s=cards.get(j).split(" ");
-                    if(mapToNum(s[0])==num){
-                        keepCard=cards.get(j);
+                for(int j = 0; j < cards.size(); j++){
+                    s = cards.get(j).split(" ");
+                    if(mapToNum(s[0]) == num){
+                        keepCard = cards.get(j);
                         cards.remove(cards.get(j));
                         j--;
                     }
@@ -71,7 +71,7 @@ public class GoFishGamePlay {
     private static LinkedList<String> findRemoval(LinkedList<Integer> removalNums, LinkedList<String> cards){
         //linked list to keep track of cards to remove
         LinkedList<String> cardsToRemove = new LinkedList<>();
-        for(int i=0;i<cards.size();i++){
+        for(int i = 0; i < cards.size(); i++){
             String[] s = cards.get(i).split(" ");
             if(removalNums.contains(mapToNum(s[0]))){
                 cardsToRemove.add(cards.get(i));
@@ -82,7 +82,7 @@ public class GoFishGamePlay {
 
     //remove cards
     private static LinkedList<String> removeCards(LinkedList<String> cards, LinkedList<String> cardsToRemove){
-        for(int i=0;i<cardsToRemove.size();i++){
+        for(int i = 0; i < cardsToRemove.size(); i++){
             cards.remove(cardsToRemove.get(i));
         }
         return cards;
